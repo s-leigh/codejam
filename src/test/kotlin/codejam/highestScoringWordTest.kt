@@ -5,7 +5,19 @@ import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertNull
 
+const val DICTIONARY_FILENAME = "/dictionary.txt"
+val dictionary = object {}.javaClass.getResource(DICTIONARY_FILENAME)?.readText()
+    ?: throw IllegalArgumentException("Dictionary file not found: $DICTIONARY_FILENAME")
+
 class highestScoringWordTest {
+
+    @Test
+    fun `test real dictionary`() {
+        val letters = charArrayOf('I','A','L','B','U','K')
+        val dictionary = dictionary.split("\n", "\r\n")
+        val result = highestScoringWord(letters, dictionary)
+        assertEquals(Pair("KUBLAI", 12), result)
+    }
 
     @Test
     fun `test single valid word with unique highest score`() {
@@ -73,6 +85,14 @@ class highestScoringWordTest {
 }
 
 class highestScoringWordWithPreprocessedDictionaryTest {
+
+    @Test
+    fun `test real dictionary`() {
+        val letters = charArrayOf('I','A','L','B','U','K')
+        val processedDictionary = processDictionary(dictionary.split("\n", "\r\n"))
+        val result = highestScoringWordWithPreprocessedDictionary(letters, processedDictionary)
+        assertEquals(Pair("KUBLAI", 12), result)
+    }
 
     @Test
     fun `test single valid word with unique highest score`() {

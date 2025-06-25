@@ -3,9 +3,6 @@ package codejam
 import powerSet
 import toUpperCase
 import withScores
-import java.util.Locale.getDefault
-
-const val DICTIONARY_FILENAME = "dictionary.txt"
 
 val LETTER_SCORES = mapOf(
     'A' to 1, 'E' to 1, 'I' to 1, 'O' to 1, 'U' to 1, 'L' to 1, 'N' to 1, 'R' to 1, 'S' to 1, 'T' to 1,
@@ -16,9 +13,6 @@ val LETTER_SCORES = mapOf(
     'J' to 8, 'X' to 8,
     'Q' to 10, 'Z' to 10
 )
-
-//val dictionary = object {}.javaClass.getResource(DICTIONARY_FILENAME)?.readText()
-//    ?: throw IllegalArgumentException("Dictionary file not found: $DICTIONARY_FILENAME")
 
 fun highestScoringWord(letters: CharArray, dictionary: List<String>): Pair<String, Int>? {
     val possibleWords = dictionary
