@@ -3,9 +3,7 @@ import java.util.Locale.getDefault
 
 // Get a map of word scores to their string values, e.g. { 6: ["bad", "dab"] }
 fun processDictionary(dictionary: List<String>): Map<Int, List<CharArray>> {
-    val wordsWithScores = dictionary
-        .map { it.uppercase(getDefault()) }
-        .map { it.toCharArray() }.withScores()
+    val wordsWithScores = dictionary.map { it.toCharArray() }.withScores()
     return wordsWithScores.groupBy({ it.second }, { it.first })
 }
 
@@ -22,5 +20,3 @@ fun List<Int>.powerSet(): Set<Int> {
 
 private fun CharArray.wordScore(): Int = this.sumOf { LETTER_SCORES[it]!! }
 fun List<CharArray>.withScores() = this.map { it to it.wordScore() }
-
-fun CharArray.toUpperCase() = this.map(Char::uppercaseChar).toCharArray()
