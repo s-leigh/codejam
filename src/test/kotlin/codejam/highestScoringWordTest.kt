@@ -13,10 +13,11 @@ class highestScoringWordTest {
 
     @Test
     fun `test real dictionary`() {
-        val letters = charArrayOf('i','a','l','b','u','k')
-        val dictionary = dictionary.split("\n", "\r\n")
-        val result = highestScoringWord(letters, dictionary)
-        assertEquals(Pair("kublai", 12), result)
+        val dictionaryFile = dictionary.split("\n", "\r\n")
+        val dictionary = dictionaryFile.take(dictionaryFile.size - 2)
+        val input = dictionaryFile.subList(dictionaryFile.size - 2, dictionaryFile.size-1).single().toCharArray()
+        val result = highestScoringWord(input, dictionary)
+        assertEquals(Pair("pastern", 9), result)
     }
 
     @Test
@@ -77,13 +78,13 @@ class highestScoringWordTest {
 }
 
 class highestScoringWordWithPreprocessedDictionaryTest {
-
+    val dictionaryFile = dictionary.split("\n", "\r\n")
+    val processedDictionary = processDictionary(dictionaryFile.take(dictionaryFile.size - 2))
     @Test
     fun `test real dictionary`() {
-        val letters = charArrayOf('i','a','l','b','u','k')
-        val processedDictionary = processDictionary(dictionary.split("\n", "\r\n"))
-        val result = highestScoringWordWithPreprocessedDictionary(letters, processedDictionary)
-        assertEquals(Pair("kublai", 12), result)
+        val input = dictionaryFile.subList(dictionaryFile.size - 2, dictionaryFile.size-1).single().toCharArray()
+        val result = highestScoringWordWithPreprocessedDictionary(input, processedDictionary)
+        assertEquals(Pair("pastern", 9), result)
     }
 
     @Test

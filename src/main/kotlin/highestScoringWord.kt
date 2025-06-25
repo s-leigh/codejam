@@ -1,5 +1,6 @@
 package codejam
 
+import LETTER_LIMIT
 import powerSet
 import withScores
 
@@ -12,10 +13,20 @@ val LETTER_SCORES =
             "jx".associate { it to 8 } +
             "qz".associate { it to 10 }
 
+private fun wordMatch(letters: CharArray, word: CharArray): Boolean {
+    if (!word.all{it in letters}) return false
+    val letterCount = letters.groupBy{it}.mapValues{it.value.size}
+    word.groupBy{it}.mapValues{it.value.size}.forEach{(c, n) ->
+        if (letterCount[c]!! < n) return false
+    }
+    return true
+}
+
 fun highestScoringWord(letters: CharArray, dictionary: List<String>): Pair<String, Int>? {
     val possibleWords = dictionary
         .map { it.toCharArray() }
-        .filter { possibleWordLetters -> possibleWordLetters.all { it in letters } }
+        .filterNot {it.size > LETTER_LIMIT}
+        .filter { wordMatch(letters, it) }
         .withScores()
     return possibleWords.maxByOrNull { it.second }?.run {
         Pair(first.joinToString(""), second)
@@ -30,7 +41,7 @@ fun highestScoringWordWithPreprocessedDictionary(
     val possibleWordScores = values.powerSet()
     val possibleWords = possibleWordScores.flatMap { dictionary[it] ?: listOf() }
     return possibleWords
-        .filter { possibleWordLetters -> possibleWordLetters.all { it in letters } }
+        .filter { wordMatch(letters, it) }
         .withScores()
         .maxByOrNull { it.second }?.run {
             Pair(first.joinToString(""), second)

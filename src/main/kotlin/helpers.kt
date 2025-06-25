@@ -1,9 +1,12 @@
 import codejam.LETTER_SCORES
-import java.util.Locale.getDefault
+
+const val LETTER_LIMIT = 7
 
 // Get a map of word scores to their string values, e.g. { 6: ["bad", "dab"] }
 fun processDictionary(dictionary: List<String>): Map<Int, List<CharArray>> {
-    val wordsWithScores = dictionary.map { it.toCharArray() }.withScores()
+    val wordsWithScores = dictionary.map { it.toCharArray() }
+        .filter{it.size <= LETTER_LIMIT}
+        .withScores()
     return wordsWithScores.groupBy({ it.second }, { it.first })
 }
 
