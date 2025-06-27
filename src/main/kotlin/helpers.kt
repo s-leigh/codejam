@@ -18,7 +18,6 @@ fun wordMatch(letters: CharArray, word: CharArray): Boolean {
     return true
 }
 
-private fun CharArray.wordScore(): Int = this.sumOf { LETTER_SCORES[it]!! }
-fun List<CharArray>.withScores() = this.map { it to it.wordScore() }
+fun CharArray.withScore() = this to this.sumOf { LETTER_SCORES[it]!! }
 
 fun CharArray.frequencyMap() = this.groupBy { it }.mapValues { it.value.size }
