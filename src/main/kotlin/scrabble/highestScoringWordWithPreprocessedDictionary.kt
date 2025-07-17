@@ -1,3 +1,5 @@
+package scrabble
+
 fun highestScoringWordWithPreprocessedDictionary(
     letters: CharArray,
     dictionary: Map<Int, List<CharArray>>

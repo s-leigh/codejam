@@ -1,3 +1,5 @@
+package scrabble
+
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertNull
@@ -46,7 +48,7 @@ class highestScoringWordTest {
         val letters = charArrayOf('x', 'y', 'z')
         val dictionary = listOf("cat", "dog", "fish")
         val result = highestScoringWord(letters, dictionary)
-        assertNull(result) // No matches with the dictionary
+        assertNull(result) // No matches with the scrabble.dictionary
     }
 
     @Test
@@ -54,7 +56,7 @@ class highestScoringWordTest {
         val letters = charArrayOf('a', 'b', 'c')
         val dictionary = emptyList<String>()
         val result = highestScoringWord(letters, dictionary)
-        assertNull(result) // No results since dictionary is empty
+        assertNull(result) // No results since scrabble.dictionary is empty
     }
 
     @Test
@@ -70,7 +72,7 @@ class highestScoringWordTest {
         val letters = charArrayOf('i', 's', 't')
         val dictionary = listOf("sit")
         val result = highestScoringWord(letters, dictionary)
-        assertEquals(Pair("sit", 3), result) // Single word in the dictionary
+        assertEquals(Pair("sit", 3), result) // Single word in the scrabble.dictionary
     }
 }
 
@@ -113,7 +115,7 @@ class highestScoringWordWithPreprocessedDictionaryTest {
         val letters = charArrayOf('x', 'y', 'z')
         val dictionary = processDictionary(listOf("cat", "dog", "fish"))
         val result = highestScoringWordWithPreprocessedDictionary(letters, dictionary)
-        assertNull(result) // No matches with the dictionary
+        assertNull(result) // No matches with the scrabble.dictionary
     }
 
     @Test
@@ -121,7 +123,7 @@ class highestScoringWordWithPreprocessedDictionaryTest {
         val letters = charArrayOf('a', 'b', 'c')
         val dictionary = processDictionary(emptyList<String>())
         val result = highestScoringWordWithPreprocessedDictionary(letters, dictionary)
-        assertNull(result) // No results since dictionary is empty
+        assertNull(result) // No results since scrabble.dictionary is empty
     }
 
     @Test
@@ -137,6 +139,6 @@ class highestScoringWordWithPreprocessedDictionaryTest {
         val letters = charArrayOf('i', 's', 't')
         val dictionary = processDictionary(listOf("sit"))
         val result = highestScoringWordWithPreprocessedDictionary(letters, dictionary)
-        assertEquals(Pair("sit", 3), result) // Single word in the dictionary
+        assertEquals(Pair("sit", 3), result) // Single word in the scrabble.dictionary
     }
 }

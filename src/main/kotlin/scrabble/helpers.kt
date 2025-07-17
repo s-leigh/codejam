@@ -1,3 +1,5 @@
+package scrabble
+
 const val LETTER_LIMIT = 7
 
 val LETTER_SCORES =

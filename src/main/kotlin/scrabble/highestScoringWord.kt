@@ -1,3 +1,5 @@
+package scrabble
+
 fun highestScoringWord(letters: CharArray, dictionary: List<String>): Pair<String, Int>? {
     val possibleWords = dictionary
         .map { it.toCharArray() }
